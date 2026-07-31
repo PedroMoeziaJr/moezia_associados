@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --moezia-red: #a3282f;
+  --moezia-red-dark: #7a1e24;
+  --moezia-dark: #1c1a19;
+  --moezia-cream: #faf8f6;
+}
+
+body {
+  color: var(--moezia-dark);
+  background: var(--moezia-cream);
+}
+
+.container-page {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
