@@ -4,7 +4,7 @@ import Logo from "./Logo";
 const NAV_LINKS = [
   { href: "/advogados", label: "Advogados" },
   { href: "/areas-de-atuacao", label: "Áreas de Atuação" },
-  { href: "/blog", label: "Notícias" },
+  { href: "/#noticias", label: "Notícias" },
   { href: "/contato", label: "Contato" },
 ];
 
