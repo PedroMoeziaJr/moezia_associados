@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-moezia-dark text-white">
       <div className="container-page grid gap-10 py-12 md:grid-cols-4">
         <div>
-          <Logo height={96} onDark />
+          <Logo height={192} onDark />
         </div>
 
         <div>
