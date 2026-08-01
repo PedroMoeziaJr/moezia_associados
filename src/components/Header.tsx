@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <header className="border-b border-black/5 bg-white/90 backdrop-blur sticky top-0 z-40">
       <div className="container-page flex items-center justify-between py-3">
-        <Logo height={80} />
+        <Logo height={160} />
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
           {NAV_LINKS.map((link) => (
             <Link

@@ -12,7 +12,7 @@ type LogoProps = {
 };
 
 /** Real Moézia Associados logo artwork (public/logo.png) - icon + wordmark + tagline. */
-export default function Logo({ href = "/", height = 88, onDark = false }: LogoProps) {
+export default function Logo({ href = "/", height = 176, onDark = false }: LogoProps) {
   const width = Math.round((height * NATURAL_WIDTH) / NATURAL_HEIGHT);
 
   const image = (
