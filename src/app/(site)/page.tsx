@@ -1,22 +1,41 @@
+import Image from "next/image";
 import Link from "next/link";
 import { advogados, areasDeAtuacao } from "@/lib/content";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
+type NoticiaCard = {
+  slug: string;
+  titulo: string;
+  conteudo: string;
+  data: string;
+  autor: string | null;
+  imagem_url: string | null;
+};
+
+/** Strips basic Markdown syntax so card previews show plain, readable text. */
+function markdownToExcerpt(conteudo: string) {
+  return conteudo
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/^[*-]\s+/gm, "")
+    .replace(/[#*_`]/g, "")
+    .trim();
+}
+
 async function getNoticias() {
   try {
     const supabase = createServerSupabaseClient();
     const { data, error } = await supabase
       .from("noticias")
-      .select("slug, titulo, conteudo, data, autor")
+      .select("slug, titulo, conteudo, data, autor, imagem_url")
       .order("data", { ascending: false })
       .limit(6);
     if (error) throw error;
-    return { noticias: data ?? [], erro: null as string | null };
+    return { noticias: (data ?? []) as NoticiaCard[], erro: null as string | null };
   } catch {
     return {
-      noticias: [] as { slug: string; titulo: string; conteudo: string; data: string; autor: string | null }[],
+      noticias: [] as NoticiaCard[],
       erro: "Não foi possível carregar as notícias no momento.",
     };
   }
@@ -119,16 +138,29 @@ export default async function HomePage() {
             <Link
               key={noticia.slug}
               href={`/blog/${noticia.slug}`}
-              className="flex flex-col rounded-lg border border-black/5 bg-white p-6 shadow-sm hover:border-moezia-red/40 transition-colors"
+              className="flex flex-col overflow-hidden rounded-lg border border-black/5 bg-white shadow-sm hover:border-moezia-red/40 transition-colors"
             >
-              <p className="text-xs text-moezia-dark/50">
-                {new Date(noticia.data).toLocaleDateString("pt-BR")}
-                {noticia.autor ? ` · ${noticia.autor}` : ""}
-              </p>
-              <h3 className="mt-1 font-serif text-lg">{noticia.titulo}</h3>
-              <p className="mt-2 line-clamp-3 text-sm text-moezia-dark/70">
-                {noticia.conteudo}
-              </p>
+              {noticia.imagem_url && (
+                <div className="relative aspect-video w-full">
+                  <Image
+                    src={noticia.imagem_url}
+                    alt={noticia.titulo}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    className="object-cover"
+                  />
+                </div>
+              )}
+              <div className="flex flex-1 flex-col p-6">
+                <p className="text-xs text-moezia-dark/50">
+                  {new Date(noticia.data).toLocaleDateString("pt-BR")}
+                  {noticia.autor ? ` · ${noticia.autor}` : ""}
+                </p>
+                <h3 className="mt-1 font-serif text-lg">{noticia.titulo}</h3>
+                <p className="mt-2 line-clamp-3 text-sm text-moezia-dark/70">
+                  {markdownToExcerpt(noticia.conteudo)}
+                </p>
+              </div>
             </Link>
           ))}
         </div>

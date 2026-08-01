@@ -25,7 +25,18 @@ export default function EditarNoticiaForm({ noticia }: { noticia: Noticia }) {
         />
       </div>
       <div>
-        <label className="block text-sm font-medium">Conteúdo</label>
+        <label className="block text-sm font-medium">
+          URL da imagem de capa (opcional)
+        </label>
+        <input
+          name="imagem_url"
+          defaultValue={noticia.imagem_url ?? ""}
+          placeholder="/nome-do-arquivo.png"
+          className="mt-1 w-full rounded-md border border-black/10 px-3 py-2 text-sm focus:border-moezia-red focus:outline-none"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium">Conteúdo (aceita Markdown: links, listas)</label>
         <textarea
           name="conteudo"
           required
