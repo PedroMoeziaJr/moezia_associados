@@ -42,3 +42,11 @@ next-env.d.ts
 
 # Claude Code local settings (machine-specific permissions)
 .claude/settings.local.json
+
+# Raw brand/design export files (CorelDRAW dumps, color profiles) kept
+# locally in public/ for reference - only the exported logo.png and
+# logo-icon.png actually used by the site are committed.
+public/ArquivoFinalProjeto_*
+public/*.icc
+public/*.icm
+public/logo papel timbrado.png

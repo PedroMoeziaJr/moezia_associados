@@ -111,7 +111,7 @@ export async function criarNoticia(formData: FormData) {
   await autoCommit(`docs: adicionar nova notícia "${titulo}"`);
 
   revalidatePath("/admin/noticias");
-  revalidatePath("/blog");
+  revalidatePath("/");
 }
 
 export async function atualizarNoticia(id: string, formData: FormData) {
@@ -127,7 +127,7 @@ export async function atualizarNoticia(id: string, formData: FormData) {
     .eq("id", id);
 
   revalidatePath("/admin/noticias");
-  revalidatePath("/blog");
+  revalidatePath("/");
 }
 
 export async function excluirNoticia(id: string) {
@@ -135,5 +135,5 @@ export async function excluirNoticia(id: string) {
   const supabase = createServerSupabaseClient();
   await supabase.from("noticias").delete().eq("id", id);
   revalidatePath("/admin/noticias");
-  revalidatePath("/blog");
+  revalidatePath("/");
 }

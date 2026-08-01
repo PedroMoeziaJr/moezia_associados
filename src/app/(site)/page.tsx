@@ -1,7 +1,30 @@
 import Link from "next/link";
 import { advogados, areasDeAtuacao } from "@/lib/content";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 
-export default function HomePage() {
+export const dynamic = "force-dynamic";
+
+async function getNoticias() {
+  try {
+    const supabase = createServerSupabaseClient();
+    const { data, error } = await supabase
+      .from("noticias")
+      .select("slug, titulo, conteudo, data, autor")
+      .order("data", { ascending: false })
+      .limit(6);
+    if (error) throw error;
+    return { noticias: data ?? [], erro: null as string | null };
+  } catch {
+    return {
+      noticias: [] as { slug: string; titulo: string; conteudo: string; data: string; autor: string | null }[],
+      erro: "Não foi possível carregar as notícias no momento.",
+    };
+  }
+}
+
+export default async function HomePage() {
+  const { noticias, erro } = await getNoticias();
+
   return (
     <>
       <section className="bg-moezia-dark text-white">
@@ -70,6 +93,44 @@ export default function HomePage() {
               Conheça a equipe →
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section id="noticias" className="container-page py-20 scroll-mt-20">
+        <h2 className="font-serif text-3xl text-center">Notícias e Artigos</h2>
+        <p className="mx-auto mt-3 max-w-xl text-center text-moezia-dark/70">
+          Conteúdos e atualizações jurídicas produzidos pelo Moézia Associados.
+        </p>
+
+        {erro && (
+          <p className="mx-auto mt-10 max-w-xl rounded-md bg-yellow-50 p-4 text-center text-sm text-yellow-800">
+            {erro} Verifique se o Supabase está configurado (.env.local).
+          </p>
+        )}
+
+        {!erro && noticias.length === 0 && (
+          <p className="mt-10 text-center text-moezia-dark/60">
+            Nenhuma notícia publicada ainda.
+          </p>
+        )}
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {noticias.map((noticia) => (
+            <Link
+              key={noticia.slug}
+              href={`/blog/${noticia.slug}`}
+              className="flex flex-col rounded-lg border border-black/5 bg-white p-6 shadow-sm hover:border-moezia-red/40 transition-colors"
+            >
+              <p className="text-xs text-moezia-dark/50">
+                {new Date(noticia.data).toLocaleDateString("pt-BR")}
+                {noticia.autor ? ` · ${noticia.autor}` : ""}
+              </p>
+              <h3 className="mt-1 font-serif text-lg">{noticia.titulo}</h3>
+              <p className="mt-2 line-clamp-3 text-sm text-moezia-dark/70">
+                {noticia.conteudo}
+              </p>
+            </Link>
+          ))}
         </div>
       </section>
     </>

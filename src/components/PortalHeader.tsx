@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Logo from "./Logo";
 import LogoutButton from "./LogoutButton";
 
@@ -12,9 +11,7 @@ export default function PortalHeader({
   return (
     <header className="border-b border-black/5 bg-white">
       <div className="container-page flex items-center justify-between py-3">
-        <Link href="/portal">
-          <Logo showTagline={false} />
-        </Link>
+        <Logo href="/portal" height={44} />
         <div className="flex items-center gap-4 text-sm">
           <span className="text-moezia-dark/70">Olá, {nome ?? "Cliente"}</span>
           <LogoutButton loginPath={loginPath} />

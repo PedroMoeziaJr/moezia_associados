@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
@@ -15,7 +16,10 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
 
   return (
     <article className="container-page max-w-3xl py-16">
-      <p className="text-xs text-moezia-dark/50">
+      <Link href="/#noticias" className="text-sm font-medium text-moezia-red hover:underline">
+        ← Voltar para notícias
+      </Link>
+      <p className="mt-6 text-xs text-moezia-dark/50">
         {new Date(noticia.data).toLocaleDateString("pt-BR")}
         {noticia.autor ? ` · ${noticia.autor}` : ""}
       </p>

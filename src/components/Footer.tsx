@@ -6,10 +6,7 @@ export default function Footer() {
     <footer className="bg-moezia-dark text-white">
       <div className="container-page grid gap-10 py-12 md:grid-cols-4">
         <div>
-          <Logo variant="light" />
-          <p className="mt-4 text-sm text-white/60">
-            Advocacia e Assessoria Jurídica
-          </p>
+          <Logo height={64} onDark />
         </div>
 
         <div>
@@ -19,7 +16,7 @@ export default function Footer() {
           <ul className="space-y-2 text-sm text-white/80">
             <li><Link href="/advogados" className="hover:text-white">Advogados</Link></li>
             <li><Link href="/areas-de-atuacao" className="hover:text-white">Áreas de Atuação</Link></li>
-            <li><Link href="/blog" className="hover:text-white">Notícias</Link></li>
+            <li><Link href="/#noticias" className="hover:text-white">Notícias</Link></li>
             <li><Link href="/contato" className="hover:text-white">Contato</Link></li>
           </ul>
         </div>
