@@ -14,7 +14,7 @@ export default function AdminHeader({ nome }: { nome: string | null | undefined 
     <header className="border-b border-white/10 bg-moezia-dark text-white">
       <div className="container-page flex items-center justify-between py-3">
         <div className="flex items-center gap-8">
-          <Logo href="/admin" height={40} onDark />
+          <Logo href="/admin" height={64} onDark />
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
             {NAV_LINKS.map((link) => (
               <Link key={link.href} href={link.href} className="text-white/80 hover:text-white">

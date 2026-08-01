@@ -44,6 +44,7 @@ export type Noticia = {
   conteudo: string;
   autor: string | null;
   data: string;
+  imagem_url: string | null;
   created_at: string;
 };
 

@@ -100,12 +100,15 @@ export async function criarNoticia(formData: FormData) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
+  const imagemUrl = String(formData.get("imagem_url") ?? "").trim();
+
   await supabase.from("noticias").insert({
     titulo,
     slug,
     conteudo: String(formData.get("conteudo") ?? ""),
     autor: session?.user?.name ?? "Moézia Associados",
     data: new Date().toISOString().slice(0, 10),
+    imagem_url: imagemUrl || null,
   });
 
   await autoCommit(`docs: adicionar nova notícia "${titulo}"`);
@@ -118,11 +121,14 @@ export async function atualizarNoticia(id: string, formData: FormData) {
   await requireAdmin();
   const supabase = createServerSupabaseClient();
 
+  const imagemUrl = String(formData.get("imagem_url") ?? "").trim();
+
   await supabase
     .from("noticias")
     .update({
       titulo: String(formData.get("titulo") ?? ""),
       conteudo: String(formData.get("conteudo") ?? ""),
+      imagem_url: imagemUrl || null,
     })
     .eq("id", id);
 
