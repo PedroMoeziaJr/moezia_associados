@@ -1,36 +1,30 @@
 import Link from "next/link";
+import ToriiIcon from "./icons/ToriiIcon";
 
 type LogoProps = {
   variant?: "dark" | "light";
   showTagline?: boolean;
+  size?: "sm" | "md" | "lg";
 };
 
-/**
- * Placeholder logo (torii gate + wordmark) until the final logo files
- * (see Arte Logo Moezia Associados/) are dropped into /public/logo.svg.
- */
-export default function Logo({ variant = "dark", showTagline = true }: LogoProps) {
+const SIZES = {
+  sm: { icon: "h-7 w-9", title: "text-lg", tagline: "text-[8px]" },
+  md: { icon: "h-9 w-11", title: "text-2xl", tagline: "text-[10px]" },
+  lg: { icon: "h-14 w-16", title: "text-4xl", tagline: "text-xs" },
+};
+
+/** Stacked lockup: icon on top, wordmark ("MOÉZIA" / "ASSOCIADOS") below. */
+export default function Logo({ variant = "dark", showTagline = true, size = "md" }: LogoProps) {
   const textColor = variant === "dark" ? "text-moezia-dark" : "text-white";
   const subColor = variant === "dark" ? "text-moezia-dark/70" : "text-white/70";
+  const s = SIZES[size];
 
   return (
     <Link href="/" className="inline-flex flex-col items-center gap-1 leading-none">
-      <svg width="56" height="34" viewBox="0 0 200 120" aria-hidden="true">
-        <path
-          d="M20 30 Q100 -10 180 30"
-          fill="none"
-          stroke="#a3282f"
-          strokeWidth="10"
-          strokeLinecap="round"
-        />
-        <rect x="30" y="28" width="12" height="70" fill="#a3282f" />
-        <rect x="94" y="28" width="12" height="70" fill="#a3282f" />
-        <rect x="158" y="28" width="12" height="70" fill="#a3282f" />
-        <path d="M0 105 Q100 75 200 105" fill="none" stroke="#a3282f" strokeWidth="4" />
-      </svg>
-      <span className={`font-serif text-2xl tracking-wide ${textColor}`}>MOÉZIA</span>
+      <ToriiIcon className={s.icon} />
+      <span className={`font-serif tracking-wide ${textColor} ${s.title}`}>MOÉZIA</span>
       {showTagline && (
-        <span className={`text-[10px] tracking-[0.3em] ${subColor}`}>ASSOCIADOS</span>
+        <span className={`tracking-[0.3em] ${subColor} ${s.tagline}`}>ASSOCIADOS</span>
       )}
     </Link>
   );
