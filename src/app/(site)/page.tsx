@@ -48,7 +48,7 @@ export default async function HomePage() {
     <>
       <section className="bg-moezia-dark text-white">
         <div className="container-page py-24 text-center">
-          <p className="mb-3 text-sm uppercase tracking-[0.3em] text-moezia-red">
+          <p className="mb-3 text-lg uppercase tracking-[0.3em] text-moezia-red">
             Advocacia e Assessoria Jurídica
           </p>
           <h1 className="font-serif text-4xl leading-tight sm:text-5xl">
@@ -76,14 +76,14 @@ export default async function HomePage() {
       </section>
 
       <section className="container-page py-20">
-        <h2 className="font-serif text-3xl text-center">Áreas de Atuação</h2>
+        <h2 className="font-serif text-4xl text-center">Áreas de Atuação</h2>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {areasDeAtuacao.map((area) => (
             <div
               key={area.slug}
               className="rounded-lg border border-black/5 bg-white p-6 shadow-sm"
             >
-              <h3 className="font-serif text-lg text-moezia-red">{area.nome}</h3>
+              <h3 className="font-serif text-xl text-moezia-red">{area.nome}</h3>
               <p className="mt-2 text-sm text-moezia-dark/70">{area.descricao}</p>
             </div>
           ))}
@@ -97,11 +97,11 @@ export default async function HomePage() {
 
       <section className="bg-white py-20">
         <div className="container-page">
-          <h2 className="font-serif text-3xl text-center">Nossos Advogados</h2>
+          <h2 className="font-serif text-4xl text-center">Nossos Advogados</h2>
           <div className="mt-10 grid gap-8 sm:grid-cols-2">
             {advogados.map((adv) => (
               <div key={adv.slug} className="rounded-lg border border-black/5 p-6">
-                <h3 className="font-serif text-xl">{adv.nome}</h3>
+                <h3 className="font-serif text-2xl">{adv.nome}</h3>
                 <p className="text-sm text-moezia-red">{adv.titulo}</p>
                 <p className="mt-3 text-sm text-moezia-dark/70">{adv.bio}</p>
               </div>
@@ -116,7 +116,7 @@ export default async function HomePage() {
       </section>
 
       <section id="noticias" className="container-page py-20 scroll-mt-20">
-        <h2 className="font-serif text-3xl text-center">Notícias e Artigos</h2>
+        <h2 className="font-serif text-4xl text-center">Notícias e Artigos</h2>
         <p className="mx-auto mt-3 max-w-xl text-center text-moezia-dark/70">
           Conteúdos e atualizações jurídicas produzidos pelo Moézia Associados.
         </p>
