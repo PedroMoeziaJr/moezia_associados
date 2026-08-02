@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 export default function ContatoPage() {
   return (
     <div className="container-page py-16">
-      <h1 className="font-serif text-4xl">Contato</h1>
+      <h1 className="font-serif text-5xl">Contato</h1>
       <p className="mt-3 max-w-2xl text-moezia-dark/70">
         Entre em contato com o Moézia Associados. Responderemos o quanto antes.
       </p>

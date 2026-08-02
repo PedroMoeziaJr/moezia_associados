@@ -26,7 +26,7 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
         {new Date(noticia.data).toLocaleDateString("pt-BR")}
         {noticia.autor ? ` · ${noticia.autor}` : ""}
       </p>
-      <h1 className="mt-2 font-serif text-4xl">{noticia.titulo}</h1>
+      <h1 className="mt-2 font-serif text-5xl">{noticia.titulo}</h1>
 
       {noticia.imagem_url && (
         <div className="relative mt-8 aspect-video w-full overflow-hidden rounded-lg">
