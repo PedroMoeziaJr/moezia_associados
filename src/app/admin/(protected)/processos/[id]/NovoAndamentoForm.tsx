@@ -68,6 +68,24 @@ export default function NovoAndamentoForm({ processoId }: { processoId: string }
         />
       </div>
       <div>
+        <label className="block text-xs font-medium">Próximos passos (opcional)</label>
+        <textarea
+          name="proximos_passos"
+          rows={2}
+          placeholder="Ex: Aguardamos o prazo de 15 dias para o banco recorrer da sentença."
+          className="mt-1 w-full rounded-md border border-black/10 px-3 py-2 text-sm focus:border-moezia-red focus:outline-none"
+        />
+      </div>
+      <div>
+        <label className="block text-xs font-medium">Anexar documento em PDF (opcional)</label>
+        <input
+          type="file"
+          name="documento"
+          accept="application/pdf"
+          className="mt-1 w-full text-sm text-moezia-dark/70 file:mr-3 file:rounded-full file:border-0 file:bg-moezia-red/10 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-moezia-red hover:file:bg-moezia-red/20"
+        />
+      </div>
+      <div>
         <label className="block text-xs font-medium">
           Atualizar status atual do processo (opcional)
         </label>

@@ -13,7 +13,7 @@ export default function Header() {
     <header className="border-b border-black/5 bg-white/90 backdrop-blur sticky top-0 z-40">
       <div className="container-page flex items-center justify-between py-3">
         <Logo height={160} />
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+        <nav className="hidden md:flex items-center gap-10 text-lg font-medium">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -26,7 +26,7 @@ export default function Header() {
         </nav>
         <Link
           href="/portal/login"
-          className="rounded-full bg-moezia-red px-5 py-2 text-sm font-semibold text-white hover:bg-moezia-red-dark transition-colors"
+          className="rounded-full bg-moezia-red px-8 py-3.5 text-lg font-semibold text-white hover:bg-moezia-red-dark transition-colors"
         >
           Portal do Cliente
         </Link>

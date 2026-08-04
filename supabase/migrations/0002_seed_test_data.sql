@@ -23,7 +23,7 @@ on conflict (numero) do nothing;
 insert into andamentos (processo_id, data, tipo, descricao_publica, explicacao)
 select
   processos.id,
-  '2026-02-10',
+  '2026-02-10'::date,
   'distribuido',
   'Processo distribuído para a 18ª Vara Cível de Brasília.',
   null
@@ -32,7 +32,7 @@ where processos.numero = '0705933-76.2026.8.07.0018'
 union all
 select
   processos.id,
-  '2026-03-05',
+  '2026-03-05'::date,
   'citacao',
   'Bradesco foi citado para apresentar defesa.',
   null
@@ -41,7 +41,7 @@ where processos.numero = '0705933-76.2026.8.07.0018'
 union all
 select
   processos.id,
-  '2026-04-20',
+  '2026-04-20'::date,
   'contestacao',
   'Bradesco apresentou contestação alegando culpa exclusiva do titular da conta.',
   'O banco negou responsabilidade pelas transações. Nosso próximo passo é apresentar réplica rebatendo os argumentos.'

@@ -49,6 +49,8 @@ export default async function ProcessoDetailPage({ params }: { params: { id: str
     })
   );
 
+  const documentosAvulsos = documentosComUrl.filter((doc) => !doc.andamento_id);
+
   return (
     <div>
       <p className="text-xs font-medium uppercase tracking-wider text-moezia-dark/50">
@@ -75,25 +77,26 @@ export default async function ProcessoDetailPage({ params }: { params: { id: str
         <div className="lg:col-span-2">
           <h2 className="font-serif text-xl">Histórico e Andamentos</h2>
           <div className="mt-6">
-            <ProcessTimeline andamentos={andamentos ?? []} />
+            <ProcessTimeline andamentos={andamentos ?? []} documentos={documentosComUrl} />
           </div>
         </div>
 
         <div>
           <h2 className="font-serif text-xl">Documentos</h2>
-          {documentosComUrl.length === 0 && (
+          {documentosAvulsos.length === 0 && (
             <p className="mt-4 text-sm text-moezia-dark/60">
-              Nenhum documento compartilhado ainda.
+              Nenhum documento avulso compartilhado ainda.
             </p>
           )}
           <ul className="mt-4 space-y-2">
-            {documentosComUrl.map((doc) => (
+            {documentosAvulsos.map((doc) => (
               <li key={doc.id}>
                 {doc.url ? (
                   <a
                     href={doc.url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    download={doc.nome_arquivo}
                     className="flex items-center gap-2 rounded-md border border-black/10 bg-white px-4 py-2 text-sm hover:border-moezia-red/40"
                   >
                     📄 {doc.nome_arquivo}

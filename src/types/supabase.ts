@@ -26,12 +26,14 @@ export type Andamento = {
   tipo: string | null;
   descricao_publica: string;
   explicacao: string | null;
+  proximos_passos: string | null;
   created_at: string;
 };
 
 export type Documento = {
   id: string;
   processo_id: string;
+  andamento_id: string | null;
   nome_arquivo: string;
   caminho_storage: string;
   created_at: string;
@@ -96,6 +98,13 @@ export type Database = {
             columns: ["processo_id"];
             isOneToOne: false;
             referencedRelation: "processos";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "documentos_andamento_id_fkey";
+            columns: ["andamento_id"];
+            isOneToOne: false;
+            referencedRelation: "andamentos";
             referencedColumns: ["id"];
           },
         ];
