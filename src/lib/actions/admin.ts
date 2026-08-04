@@ -23,8 +23,10 @@ export async function criarAndamento(processoId: string, formData: FormData) {
   const tipo = String(formData.get("tipo") ?? "");
   const descricaoPublica = String(formData.get("descricao_publica") ?? "");
   const explicacao = String(formData.get("explicacao") ?? "");
+  const proximosPassos = String(formData.get("proximos_passos") ?? "").trim();
   const data = String(formData.get("data") ?? new Date().toISOString().slice(0, 10));
   const novoStatus = String(formData.get("novo_status") ?? "");
+  const documento = formData.get("documento");
 
   const { data: processo } = await supabase
     .from("processos")
@@ -32,13 +34,53 @@ export async function criarAndamento(processoId: string, formData: FormData) {
     .eq("id", processoId)
     .single();
 
-  await supabase.from("andamentos").insert({
-    processo_id: processoId,
-    tipo,
-    descricao_publica: descricaoPublica,
-    explicacao,
-    data,
-  });
+  const { data: andamento, error: andamentoError } = await supabase
+    .from("andamentos")
+    .insert({
+      processo_id: processoId,
+      tipo,
+      descricao_publica: descricaoPublica,
+      explicacao,
+      proximos_passos: proximosPassos || null,
+      data,
+    })
+    .select()
+    .single();
+
+  if (andamentoError || !andamento) {
+    throw new Error(andamentoError?.message ?? "Falha ao registrar andamento.");
+  }
+
+  if (documento instanceof File && documento.size > 0) {
+    if (documento.type !== "application/pdf") {
+      throw new Error("O documento anexado precisa ser um arquivo PDF.");
+    }
+
+    const nomeArquivo = documento.name || "documento.pdf";
+    const nomeSanitizado = nomeArquivo
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "")
+      .replace(/[^a-zA-Z0-9.\-_]+/g, "_");
+    const caminhoStorage = `${processoId}/${andamento.id}-${nomeSanitizado}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("documentos-processos")
+      .upload(caminhoStorage, documento, {
+        contentType: "application/pdf",
+        upsert: true,
+      });
+
+    if (uploadError) {
+      throw new Error(`Falha ao enviar o documento: ${uploadError.message}`);
+    }
+
+    await supabase.from("documentos").insert({
+      processo_id: processoId,
+      andamento_id: andamento.id,
+      nome_arquivo: nomeArquivo,
+      caminho_storage: caminhoStorage,
+    });
+  }
 
   if (novoStatus) {
     await supabase.from("processos").update({ status_atual: novoStatus }).eq("id", processoId);
@@ -85,6 +127,7 @@ export async function criarCliente(formData: FormData) {
   });
 
   revalidatePath("/admin/clientes");
+  revalidatePath("/admin/processos");
 }
 
 export async function criarNoticia(formData: FormData) {

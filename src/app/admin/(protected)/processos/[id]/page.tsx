@@ -23,6 +23,21 @@ export default async function AdminProcessoDetailPage({ params }: { params: { id
     .eq("processo_id", processo.id)
     .order("data", { ascending: false });
 
+  const { data: documentos } = await supabase
+    .from("documentos")
+    .select("*")
+    .eq("processo_id", processo.id)
+    .order("created_at", { ascending: false });
+
+  const documentosComUrl = await Promise.all(
+    (documentos ?? []).map(async (doc) => {
+      const { data: signed } = await supabase.storage
+        .from("documentos-processos")
+        .createSignedUrl(doc.caminho_storage, 60 * 10);
+      return { ...doc, url: signed?.signedUrl ?? null };
+    })
+  );
+
   return (
     <div>
       <p className="text-xs font-medium uppercase tracking-wider text-moezia-dark/50">
@@ -40,7 +55,7 @@ export default async function AdminProcessoDetailPage({ params }: { params: { id
         <div className="lg:col-span-2">
           <h2 className="font-serif text-xl">Histórico e Andamentos</h2>
           <div className="mt-6">
-            <ProcessTimeline andamentos={andamentos ?? []} />
+            <ProcessTimeline andamentos={andamentos ?? []} documentos={documentosComUrl} />
           </div>
         </div>
 
