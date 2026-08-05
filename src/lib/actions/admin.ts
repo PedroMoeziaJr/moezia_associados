@@ -130,6 +130,22 @@ export async function criarCliente(formData: FormData) {
   revalidatePath("/admin/processos");
 }
 
+export async function redefinirSenhaCliente(usuarioId: string, formData: FormData) {
+  await requireAdmin();
+  const supabase = createServerSupabaseClient();
+
+  const novaSenha = String(formData.get("nova_senha") ?? "");
+  if (novaSenha.length < 8) {
+    throw new Error("A nova senha precisa ter pelo menos 8 caracteres.");
+  }
+
+  const senhaHash = await bcrypt.hash(novaSenha, 10);
+
+  await supabase.from("usuarios").update({ senha_hash: senhaHash }).eq("id", usuarioId);
+
+  revalidatePath("/admin/clientes");
+}
+
 export async function criarNoticia(formData: FormData) {
   await requireAdmin();
   const session = await getServerSession(authOptions);
