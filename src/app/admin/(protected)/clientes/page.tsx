@@ -1,5 +1,6 @@
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import NovoClienteForm from "./NovoClienteForm";
+import RedefinirSenhaForm from "./RedefinirSenhaForm";
 
 export const dynamic = "force-dynamic";
 
@@ -24,6 +25,9 @@ export default async function AdminClientesPage() {
             >
               <p className="font-medium">{cliente.nome ?? "(sem nome)"}</p>
               <p className="text-sm text-moezia-dark/60">{cliente.email}</p>
+              <div className="mt-3">
+                <RedefinirSenhaForm usuarioId={cliente.id} />
+              </div>
             </div>
           ))}
           {(!clientes || clientes.length === 0) && (
