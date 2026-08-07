@@ -97,10 +97,49 @@ export default async function HomePage() {
 
       <section className="bg-white py-20">
         <div className="container-page">
+          <h2 className="font-serif text-4xl text-center">Direito, dados e tecnologia</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-moezia-dark/70">
+            O Moézia Associados utiliza recursos de organização de dados e tecnologia
+            para apoiar a prestação jurídica, facilitar o acompanhamento dos casos e
+            oferecer informações mais claras para pessoas e empresas.
+          </p>
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            <div className="rounded-lg border border-black/5 bg-moezia-cream p-6">
+              <h3 className="font-serif text-lg text-moezia-red">Inteligência Jurídica</h3>
+              <p className="mt-2 text-sm text-moezia-dark/70">
+                Análise de processos, contratos e riscos apoiada por dados e
+                indicadores.
+              </p>
+            </div>
+            <div className="rounded-lg border border-black/5 bg-moezia-cream p-6">
+              <h3 className="font-serif text-lg text-moezia-red">Governança de IA e Dados</h3>
+              <p className="mt-2 text-sm text-moezia-dark/70">
+                Assessoria jurídica em LGPD, inteligência artificial, privacidade e
+                contratos tecnológicos.
+              </p>
+            </div>
+            <div className="rounded-lg border border-black/5 bg-moezia-cream p-6">
+              <h3 className="font-serif text-lg text-moezia-red">Acompanhamento Digital</h3>
+              <p className="mt-2 text-sm text-moezia-dark/70">
+                Atualizações processuais, documentos e informações organizadas por
+                meio do Portal do Cliente.
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 text-center">
+            <Link href="/solucoes-juridicas" className="text-moezia-red font-medium hover:underline">
+              Conheça nossas soluções jurídicas →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-moezia-cream py-20">
+        <div className="container-page">
           <h2 className="font-serif text-4xl text-center">Nossos Advogados</h2>
           <div className="mt-10 grid gap-8 sm:grid-cols-2">
             {advogados.map((adv) => (
-              <div key={adv.slug} className="rounded-lg border border-black/5 p-6">
+              <div key={adv.slug} className="rounded-lg border border-black/5 bg-white p-6">
                 <h3 className="font-serif text-2xl">{adv.nome}</h3>
                 <p className="text-sm text-moezia-red">{adv.titulo}</p>
                 <p className="mt-3 text-sm text-moezia-dark/70">{adv.bio}</p>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { areasDeAtuacao } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -31,6 +32,12 @@ export default function AreasDeAtuacaoPage() {
             </ul>
           </div>
         ))}
+      </div>
+
+      <div className="mt-12 text-center">
+        <Link href="/solucoes-juridicas" className="text-moezia-red font-medium hover:underline">
+          Conheça também nossas soluções jurídicas orientadas por dados →
+        </Link>
       </div>
     </div>
   );
