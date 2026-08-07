@@ -47,14 +47,14 @@ export default async function HomePage() {
   return (
     <>
       <section className="bg-moezia-dark text-white">
-        <div className="container-page py-24 text-center">
-          <p className="mb-3 text-lg uppercase tracking-[0.3em] text-moezia-red">
+        <div className="container-page py-16 text-center sm:py-20 lg:py-24">
+          <p className="mb-3 text-base uppercase tracking-[0.3em] text-moezia-red sm:text-lg">
             Advocacia e Assessoria Jurídica
           </p>
           <h1 className="font-serif text-4xl leading-tight sm:text-5xl">
             Moézia Associados
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-white/70">
+          <p className="mx-auto mt-6 max-w-2xl leading-relaxed text-white/70">
             Direito Digital, LGPD, Direito Civil e Direito Militar com atendimento
             próximo, técnico e transparente.
           </p>
@@ -75,7 +75,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="container-page py-20">
+      <section className="container-page py-16 md:py-20">
         <h2 className="font-serif text-4xl text-center">Áreas de Atuação</h2>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {areasDeAtuacao.map((area) => (
@@ -95,32 +95,32 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="bg-white py-16 md:py-20">
         <div className="container-page">
           <h2 className="font-serif text-4xl text-center">Direito, dados e tecnologia</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-center text-moezia-dark/70">
+          <p className="mx-auto mt-3 max-w-2xl text-center leading-relaxed text-moezia-dark/70">
             O Moézia Associados utiliza recursos de organização de dados e tecnologia
             para apoiar a prestação jurídica, facilitar o acompanhamento dos casos e
             oferecer informações mais claras para pessoas e empresas.
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            <div className="rounded-lg border border-black/5 bg-moezia-cream p-6">
+            <div className="rounded-lg border border-black/5 bg-moezia-cream p-6 shadow-sm">
               <h3 className="font-serif text-lg text-moezia-red">Inteligência Jurídica</h3>
-              <p className="mt-2 text-sm text-moezia-dark/70">
+              <p className="mt-2 text-sm leading-relaxed text-moezia-dark/70">
                 Análise de processos, contratos e riscos apoiada por dados e
                 indicadores.
               </p>
             </div>
-            <div className="rounded-lg border border-black/5 bg-moezia-cream p-6">
+            <div className="rounded-lg border border-black/5 bg-moezia-cream p-6 shadow-sm">
               <h3 className="font-serif text-lg text-moezia-red">Governança de IA e Dados</h3>
-              <p className="mt-2 text-sm text-moezia-dark/70">
+              <p className="mt-2 text-sm leading-relaxed text-moezia-dark/70">
                 Assessoria jurídica em LGPD, inteligência artificial, privacidade e
                 contratos tecnológicos.
               </p>
             </div>
-            <div className="rounded-lg border border-black/5 bg-moezia-cream p-6">
+            <div className="rounded-lg border border-black/5 bg-moezia-cream p-6 shadow-sm">
               <h3 className="font-serif text-lg text-moezia-red">Acompanhamento Digital</h3>
-              <p className="mt-2 text-sm text-moezia-dark/70">
+              <p className="mt-2 text-sm leading-relaxed text-moezia-dark/70">
                 Atualizações processuais, documentos e informações organizadas por
                 meio do Portal do Cliente.
               </p>
@@ -134,15 +134,15 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="bg-moezia-cream py-20">
+      <section className="bg-moezia-cream py-16 md:py-20">
         <div className="container-page">
           <h2 className="font-serif text-4xl text-center">Nossos Advogados</h2>
           <div className="mt-10 grid gap-8 sm:grid-cols-2">
             {advogados.map((adv) => (
-              <div key={adv.slug} className="rounded-lg border border-black/5 bg-white p-6">
-                <h3 className="font-serif text-2xl">{adv.nome}</h3>
+              <div key={adv.slug} className="rounded-lg border border-black/5 bg-white p-6 shadow-sm">
+                <h3 className="font-serif text-xl sm:text-2xl">{adv.nome}</h3>
                 <p className="text-sm text-moezia-red">{adv.titulo}</p>
-                <p className="mt-3 text-sm text-moezia-dark/70">{adv.bio}</p>
+                <p className="mt-3 text-sm leading-relaxed text-moezia-dark/70">{adv.bio}</p>
               </div>
             ))}
           </div>
@@ -154,9 +154,9 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section id="noticias" className="container-page py-20 scroll-mt-20">
+      <section id="noticias" className="container-page py-16 md:py-20 scroll-mt-20">
         <h2 className="font-serif text-4xl text-center">Notícias e Artigos</h2>
-        <p className="mx-auto mt-3 max-w-xl text-center text-moezia-dark/70">
+        <p className="mx-auto mt-3 max-w-xl text-center leading-relaxed text-moezia-dark/70">
           Conteúdos e atualizações jurídicas produzidos pelo Moézia Associados.
         </p>
 
@@ -172,15 +172,23 @@ export default async function HomePage() {
           </p>
         )}
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          className={
+            noticias.length === 1
+              ? "mx-auto mt-10 max-w-[400px]"
+              : noticias.length === 2
+                ? "mx-auto mt-10 grid max-w-2xl gap-6 sm:grid-cols-2"
+                : "mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          }
+        >
           {noticias.map((noticia) => (
             <Link
               key={noticia.slug}
               href={`/blog/${noticia.slug}`}
-              className="flex flex-col overflow-hidden rounded-lg border border-black/5 bg-white shadow-sm hover:border-moezia-red/40 transition-colors"
+              className="flex flex-col overflow-hidden rounded-lg border border-black/5 bg-white shadow-sm hover:border-moezia-red/40 hover:shadow transition-colors"
             >
               {noticia.imagem_url && (
-                <div className="relative aspect-video w-full">
+                <div className="relative aspect-video w-full bg-moezia-cream">
                   <Image
                     src={noticia.imagem_url}
                     alt={noticia.titulo}
@@ -191,12 +199,12 @@ export default async function HomePage() {
                 </div>
               )}
               <div className="flex flex-1 flex-col p-6">
-                <p className="text-xs text-moezia-dark/50">
+                <p className="text-sm text-moezia-dark/50">
                   {new Date(noticia.data).toLocaleDateString("pt-BR")}
                   {noticia.autor ? ` · ${noticia.autor}` : ""}
                 </p>
                 <h3 className="mt-1 font-serif text-lg">{noticia.titulo}</h3>
-                <p className="mt-2 line-clamp-3 text-sm text-moezia-dark/70">
+                <p className="mt-2 line-clamp-3 text-sm text-moezia-dark/70 leading-relaxed">
                   {markdownToExcerpt(noticia.conteudo)}
                 </p>
               </div>

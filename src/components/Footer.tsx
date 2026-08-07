@@ -4,9 +4,9 @@ import Logo from "./Logo";
 export default function Footer() {
   return (
     <footer className="bg-moezia-dark text-white">
-      <div className="container-page grid gap-10 py-12 md:grid-cols-4">
+      <div className="container-page grid gap-10 py-10 md:grid-cols-4">
         <div>
-          <Logo height={192} onDark />
+          <Logo height={112} onDark />
         </div>
 
         <div>
@@ -37,7 +37,7 @@ export default function Footer() {
             Contato
           </h3>
           <ul className="space-y-2 text-sm text-white/80">
-            <li>contato@moeziaassociados.adv.br</li>
+            <li className="break-words">contato@moeziaassociados.adv.br</li>
             <li>Brasília, DF</li>
           </ul>
         </div>

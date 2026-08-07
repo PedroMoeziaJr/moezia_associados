@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
+import MobileMenu from "./MobileMenu";
 
 const NAV_LINKS = [
   { href: "/advogados", label: "Advogados" },
@@ -11,10 +12,16 @@ const NAV_LINKS = [
 
 export default function Header() {
   return (
-    <header className="border-b border-black/5 bg-white/90 backdrop-blur sticky top-0 z-40">
-      <div className="container-page flex items-center justify-between py-3">
-        <Logo height={160} />
-        <nav className="hidden lg:flex items-center gap-6 text-base font-medium whitespace-nowrap xl:gap-8 xl:text-lg">
+    <header className="relative border-b border-black/5 bg-white/90 backdrop-blur sticky top-0 z-40">
+      <div className="container-page flex items-center justify-between gap-4 py-2.5 lg:py-3">
+        <span className="lg:hidden">
+          <Logo height={60} />
+        </span>
+        <span className="hidden lg:inline-flex">
+          <Logo height={84} />
+        </span>
+
+        <nav className="hidden lg:flex items-center gap-8 text-[15px] font-medium whitespace-nowrap">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -25,12 +32,15 @@ export default function Header() {
             </Link>
           ))}
         </nav>
+
         <Link
           href="/portal/login"
-          className="rounded-full bg-moezia-red px-8 py-3.5 text-lg font-semibold text-white hover:bg-moezia-red-dark transition-colors"
+          className="hidden lg:inline-flex items-center rounded-full bg-moezia-red px-6 py-3 text-sm font-semibold text-white hover:bg-moezia-red-dark transition-colors"
         >
           Portal do Cliente
         </Link>
+
+        <MobileMenu links={NAV_LINKS} />
       </div>
     </header>
   );
