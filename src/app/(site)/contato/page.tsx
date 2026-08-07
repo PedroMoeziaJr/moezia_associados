@@ -6,9 +6,9 @@ export const metadata: Metadata = {
 
 export default function ContatoPage() {
   return (
-    <div className="container-page py-16">
-      <h1 className="font-serif text-5xl">Contato</h1>
-      <p className="mt-3 max-w-2xl text-moezia-dark/70">
+    <div className="container-page py-12 sm:py-16 lg:py-20">
+      <h1 className="font-serif text-4xl sm:text-5xl">Contato</h1>
+      <p className="mt-3 max-w-2xl leading-relaxed text-moezia-dark/70">
         Entre em contato com o Moézia Associados. Responderemos o quanto antes.
       </p>
 
@@ -50,7 +50,7 @@ export default function ContatoPage() {
               className="mt-1 w-full rounded-md border border-black/10 px-3 py-2 text-sm focus:border-moezia-red focus:outline-none"
             />
           </div>
-          <p className="text-xs text-moezia-dark/50">
+          <p className="text-sm text-moezia-dark/50">
             Este formulário ainda não está conectado a um serviço de e-mail.
             Configure um provedor (ex: Resend, SendGrid) na rota de API antes
             de publicar em produção.
@@ -66,7 +66,7 @@ export default function ContatoPage() {
         <div className="space-y-4">
           <div>
             <h2 className="font-serif text-lg">E-mail</h2>
-            <p className="text-moezia-dark/70">contato@moeziaassociados.adv.br</p>
+            <p className="break-words text-moezia-dark/70">contato@moeziaassociados.adv.br</p>
           </div>
           <div>
             <h2 className="font-serif text-lg">Localização</h2>

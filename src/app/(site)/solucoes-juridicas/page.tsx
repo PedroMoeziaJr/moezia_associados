@@ -17,14 +17,14 @@ export default function SolucoesJuridicasPage() {
   return (
     <>
       <section className="bg-moezia-dark text-white">
-        <div className="container-page py-24 text-center">
+        <div className="container-page py-16 text-center sm:py-20 lg:py-24">
           <p className="mb-3 text-sm uppercase tracking-[0.3em] text-moezia-red">
             Direito, dados e tecnologia
           </p>
           <h1 className="font-serif text-4xl leading-tight sm:text-5xl">
             Soluções jurídicas orientadas por dados
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-white/70">
+          <p className="mx-auto mt-6 max-w-2xl leading-relaxed text-white/70">
             Utilizamos recursos de inteligência jurídica, análise de dados e tecnologia
             para apoiar decisões, organizar informações e tornar a prestação jurídica
             mais clara, preventiva e estratégica.
@@ -32,9 +32,9 @@ export default function SolucoesJuridicasPage() {
         </div>
       </section>
 
-      <section className="container-page py-20">
+      <section className="container-page py-16 md:py-20">
         <h2 className="font-serif text-4xl text-center">Principais soluções</h2>
-        <p className="mx-auto mt-3 max-w-2xl text-center text-moezia-dark/70">
+        <p className="mx-auto mt-3 max-w-2xl text-center leading-relaxed text-moezia-dark/70">
           As soluções são estruturadas conforme as necessidades jurídicas de cada
           cliente. Dados, painéis e recursos de inteligência artificial podem ser
           utilizados como instrumentos auxiliares, sempre com análise e supervisão
@@ -48,7 +48,7 @@ export default function SolucoesJuridicasPage() {
               className="flex flex-col rounded-lg border border-black/10 bg-white p-8 shadow-sm"
             >
               <h3 className="font-serif text-2xl text-moezia-red">{solucao.titulo}</h3>
-              <p className="mt-3 text-sm text-moezia-dark/70">{solucao.descricaoCurta}</p>
+              <p className="mt-3 text-sm leading-relaxed text-moezia-dark/70">{solucao.descricaoCurta}</p>
               <ul className="mt-5 flex-1 space-y-2 text-sm text-moezia-dark/80">
                 {solucao.itens.map((item) => (
                   <li key={item} className="flex gap-2">
@@ -57,7 +57,7 @@ export default function SolucoesJuridicasPage() {
                 ))}
               </ul>
               {solucao.observacao && (
-                <p className="mt-5 border-t border-black/5 pt-4 text-xs text-moezia-dark/50">
+                <p className="mt-5 border-t border-black/5 pt-4 text-sm text-moezia-dark/50">
                   {solucao.observacao}
                 </p>
               )}
@@ -74,47 +74,47 @@ export default function SolucoesJuridicasPage() {
         </div>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="bg-white py-16 md:py-20">
         <div className="container-page">
           <h2 className="font-serif text-4xl text-center">Soluções complementares</h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {solucoesComplementares.map((solucao) => (
               <div
                 key={solucao.titulo}
-                className="rounded-lg border border-black/5 p-6"
+                className="rounded-lg border border-black/5 bg-white p-6 shadow-sm"
               >
                 <h3 className="font-serif text-lg text-moezia-red">{solucao.titulo}</h3>
-                <p className="mt-2 text-sm text-moezia-dark/70">{solucao.texto}</p>
+                <p className="mt-2 text-sm leading-relaxed text-moezia-dark/70">{solucao.texto}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="container-page py-20">
+      <section className="container-page py-16 md:py-20">
         <h2 className="font-serif text-4xl text-center">Como funciona</h2>
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {etapasMetodologia.map((etapa) => (
             <div key={etapa.numero}>
               <span className="font-serif text-3xl text-moezia-red">{etapa.numero}</span>
               <h3 className="mt-2 font-serif text-lg">{etapa.titulo}</h3>
-              <p className="mt-2 text-sm text-moezia-dark/70">{etapa.texto}</p>
+              <p className="mt-2 text-sm leading-relaxed text-moezia-dark/70">{etapa.texto}</p>
             </div>
           ))}
         </div>
-        <p className="mx-auto mt-12 max-w-2xl text-center text-sm text-moezia-dark/60">
+        <p className="mx-auto mt-12 max-w-2xl text-center text-sm leading-relaxed text-moezia-dark/60">
           A tecnologia auxilia a organização e a análise das informações, mas não
           substitui a avaliação jurídica nem a responsabilidade profissional do
           advogado.
         </p>
       </section>
 
-      <section className="bg-white py-20">
+      <section className="bg-white py-16 md:py-20">
         <div className="container-page max-w-3xl">
           <h2 className="font-serif text-4xl text-center">
             Uso responsável de inteligência artificial
           </h2>
-          <p className="mt-6 text-center text-moezia-dark/70">
+          <p className="mt-6 text-center leading-relaxed text-moezia-dark/70">
             Recursos de inteligência artificial podem ser utilizados para auxiliar na
             organização, classificação, pesquisa e elaboração inicial de conteúdos.
             Toda utilização deve observar a confidencialidade, a proteção de dados
@@ -134,11 +134,11 @@ export default function SolucoesJuridicasPage() {
       </section>
 
       <section className="bg-moezia-dark text-white">
-        <div className="container-page py-24 text-center">
+        <div className="container-page py-16 text-center sm:py-20 lg:py-24">
           <h2 className="font-serif text-3xl sm:text-4xl">
             Assessoria jurídica apoiada por informação e tecnologia
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-white/70">
+          <p className="mx-auto mt-6 max-w-2xl leading-relaxed text-white/70">
             Cada projeto é definido a partir do contexto jurídico do cliente. O uso de
             dados, painéis ou recursos de inteligência artificial depende da natureza
             da demanda e das informações disponíveis.

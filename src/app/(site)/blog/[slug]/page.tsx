@@ -18,18 +18,18 @@ export default async function NoticiaPage({ params }: { params: { slug: string }
   if (!noticia) return notFound();
 
   return (
-    <article className="container-page max-w-3xl py-16">
+    <article className="container-page max-w-3xl py-12 sm:py-16 lg:py-20">
       <Link href="/#noticias" className="text-sm font-medium text-moezia-red hover:underline">
         ← Voltar para notícias
       </Link>
-      <p className="mt-6 text-xs text-moezia-dark/50">
+      <p className="mt-6 text-sm text-moezia-dark/50">
         {new Date(noticia.data).toLocaleDateString("pt-BR")}
         {noticia.autor ? ` · ${noticia.autor}` : ""}
       </p>
-      <h1 className="mt-2 font-serif text-5xl">{noticia.titulo}</h1>
+      <h1 className="mt-2 font-serif text-4xl sm:text-5xl">{noticia.titulo}</h1>
 
       {noticia.imagem_url && (
-        <div className="relative mt-8 aspect-video w-full overflow-hidden rounded-lg">
+        <div className="relative mt-8 aspect-video w-full overflow-hidden rounded-lg bg-moezia-cream">
           <Image
             src={noticia.imagem_url}
             alt={noticia.titulo}
